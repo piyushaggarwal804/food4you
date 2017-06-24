@@ -112,7 +112,49 @@ include("connect.php");
         </div>
     
     </nav>
+	
 	<?php
+	if(isset($_POST['sub'])){
+		$sql1="select name from signup where username='$_SESSION[user]';";
+		$resultz=$conn->query($sql1);
+		$rowz=$resultz->fetch_assoc();
+		
+		$sql="insert into feedback values('$rowz[name]','$_POST[about]','$_POST[message]');";
+		$conn->query($sql);	
+	}
+	  echo "<form action='feedbacksub.php' method='POST'><div class='container'>
+
+        <div class='bg-faded p-4 my-4'>
+            <div class='card card-inverse'>
+                
+               
+                    <h2 class='card-title text-shadow text-uppercase mb-0' style='color:black'>";
+						$sql="select name from signup where username='$_SESSION[user]';";
+						$result=$conn->query($sql);
+						if ($result->num_rows > 0) {
+			// output data of each row
+
+			while($row = $result->fetch_assoc()) {
+				echo strtoupper($row['name']);
+						}}
+						echo "</h2>
+                    <h4  style='color:black'><input type='text' name='about' placeholder='about' required/></h4>
+                    <p class='hidden-md-down' style='color:black'><textarea name='message' rows='5' cols='40'></textarea></p>
+					<div class='row'>
+					<div class='col-lg-1 col-md-1'>
+					</div>
+					<div>
+                    <button  style:'width=250px' class ='btn-primary' type='submit' name='sub' >Comment</button>
+					</div>
+					</div>
+               
+            </div>
+        </div>
+
+       
+
+
+    </div></form>";
 $sql="select * from feedback order by date desc;";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {

@@ -84,7 +84,7 @@ include("connect.php");
 
 	if(isset($_POST['submit'])){
 
-		$sql = "INSERT INTO signup VALUES ('$_POST[name]', '$_POST[user]', '$_POST[phone]','$_POST[pass]')";
+		$sql = "INSERT INTO signup VALUES ('$_POST[name]', '$_POST[user]','_POST[email]', '$_POST[phone]','$_POST[pass]')";
 		$pass1=$_POST["pass"];
 		$pass2=$_POST["pass2"];
 		if(strlen($pass1)>=4){
@@ -127,7 +127,13 @@ include("connect.php");
                     <div class="form-group col-lg-6">
                         <label class="text-heading">User name</label>
                         <input type="text" class="form-control" name="user">
+                    </div></div><div class="row">
+			         <div class="form-group col-lg-3"></div>
+                    <div class="form-group col-lg-6">
+                        <label class="text-heading">email id</label>
+                        <input type="email" class="form-control" name="email">
                     </div></div>
+
 					 <div class="row">
 			         <div class="form-group col-lg-3"></div>
                     <div class="form-group col-lg-6">

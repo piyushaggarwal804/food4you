@@ -57,22 +57,20 @@ include("connect.php");
 
     <div class="col-sm-9">
       <h4><small>Order</small></h4>
-	  <form action="order.php" method="POST">
+	  <form action="function.php" method="POST">
 	  <?php
 	  
 	  $sql="select distinct username from list;";
 	  $result=$conn->query($sql);
 	  if($result->num_rows>0){
-		  
-		  while($row=$result->fetch_assoc()){
+			  
+ 
+		
 			  $y=1;
-		  if(isset($_POST["go"])==$y){
-				 $sql5="delete from list where username= '$row[username]';"; 
-$conn->query($sql5)	;			 
-				  
-				  
-				  
-			  }
+			  
+		  while($row=$result->fetch_assoc()){
+			
+		 
 			  ?>
       <hr>
 	  
@@ -113,10 +111,11 @@ $conn->query($sql5)	;
 	  
     </tr>";
 	
-	
 	$x+=1;
 	  }
 	  
+			  
+			
 	  
 	  }?>
 	
@@ -124,11 +123,17 @@ $conn->query($sql5)	;
   </tbody>
 </table>
 <?php
-echo "<button class='btn-primary' type='submit' name='go' value=".$y.">Done</button>";
+echo "<input type='checkbox' name='check_list[".$y."]' value='a'><br/>";
+ echo "<input type='submit' name='submit' value='submit'>";
+$y+=1;	
 
 
- $y+=1;
-	  }
+			  
+	  	
+ 
+	  } 
+
+	  
 	  }
 	  
 	  
@@ -136,7 +141,7 @@ echo "<button class='btn-primary' type='submit' name='go' value=".$y.">Done</but
 	  ?>
       <br><br>
       
-     
+    
         </form>
     </div>
   </div>
